@@ -3,29 +3,27 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        vector<string> v;
-        string t = "";
-        for(int i = 0 ; i<s.size() ; i++){
-            if(s[i]!=' '){
-                t+=s[i];
+        vector<string> v ;
+        string temp = "" , ans = "";
+
+        for(int i=0 ; i<s.size() ; i++){
+            if(s[i]==32){
+                if(temp.size()>0) v.push_back(temp);
+                temp = "";
             }
-            else{
-                v.push_back(t);
-                t = "";
-            }
+            else temp += s[i];
         }
-        v.push_back(t);
-        vector<string> ans;
+        if(temp.size()>0) v.push_back(temp);
+        reverse(v.begin(),v.end());
+
         for(int i=0 ; i<v.size() ; i++){
-            if(v[i]!="") ans.push_back(v[i]);
+            ans += v[i];
+            ans += ' ';
         }
-        reverse(ans.begin(),ans.end());
-        s = "";
-        for(int i=0 ; i<ans.size() ; i++){
-            s+=ans[i];
-            s+=' ';
-        }
-        s.pop_back();
-        return s;
+
+        ans.pop_back();
+        return ans;
+        
+
     }
 };
