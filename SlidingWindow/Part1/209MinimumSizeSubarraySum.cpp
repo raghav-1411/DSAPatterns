@@ -14,11 +14,6 @@ public:
             }
             j++;
         }
-        while(i<nums.size() && sum>=target){
-            minLength = min(minLength,j-i+1);
-            sum -= nums[i];
-            i++;
-        }
         return minLength == INT_MAX ? 0 : minLength;
     }
 };
