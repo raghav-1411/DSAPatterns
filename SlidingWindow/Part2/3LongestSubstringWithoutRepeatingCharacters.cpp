@@ -17,3 +17,28 @@ public:
         return ans;
     }
 };
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        if(s.size()==0) return 0;
+        int maxLength = 1;
+        unordered_map<char,int> m;
+
+        int i = 0 , j = 0 ; 
+         
+        while(j<s.size()){
+            while(m.find(s[j])!=m.end()){
+                maxLength = max(maxLength,j-i);
+                m[s[i]]--;
+                if(m[s[i]]==0) m.erase(s[i]);
+                i++;
+            }
+            m[s[j]]++;
+            j++;
+        }
+        maxLength = max(maxLength,j-i);
+
+        return maxLength;
+    }
+};
