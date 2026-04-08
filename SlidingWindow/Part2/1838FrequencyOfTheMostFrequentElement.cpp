@@ -9,9 +9,7 @@ public:
         while(j<nums.size()){
             sum += nums[j];
 
-            long long total = 1LL * (j-i+1) * nums[j];
-
-            if(total-sum>k){
+            while(1LL * (j - i + 1) * nums[j] - sum > k){
                 sum -= nums[i];
                 i++;
             }
