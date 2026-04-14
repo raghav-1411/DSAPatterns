@@ -71,8 +71,10 @@ public:
             maxFreq = max(maxFreq, freq[s[j] - 'A']);
 
             while ((j - i + 1) - maxFreq > k) {
+                maxFreq = 0 ;
                 freq[s[i] - 'A']--;
                 i++;
+                for(int l=0 ; l<26 ; l++) maxFreq = max(maxFreq,freq[l]);
             }
 
             ans = max(ans, j - i + 1);
