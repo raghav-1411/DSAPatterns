@@ -1,3 +1,5 @@
+// Approach 1 -> T.C = O(nlogn) & S.C = O(n)
+
 bool cmp(vector<int>& a , vector<int>& b){
     if(a[0]==b[0]) return a[1] < b[1];
     return a[0] < b[0] ; 
@@ -28,6 +30,33 @@ public:
         ans += (days-temp[temp.size()-1][1]);
 
         
+        return ans;
+    }
+};
+
+// Optimised Appraoch -> T.C = O(nlogn) & S.C = O(1)
+
+bool cmp(vector<int>& a , vector<int>& b){
+    if(a[0]==b[0]) return a[1] < b[1];
+    return a[0] < b[0] ; 
+}
+class Solution {
+public:
+    int countDays(int days, vector<vector<int>>& meetings) {
+        sort(meetings.begin(),meetings.end(),cmp);
+        int n = meetings.size();
+        int ans = 0 ; 
+        ans += (meetings[0][0]-1);
+        int endTime = meetings[0][1];
+
+        for(int i=1 ; i<n ; i++){
+            if(meetings[i][0]<=endTime) endTime = max(endTime,meetings[i][1]);
+            else{
+                ans += (meetings[i][0]-endTime-1);
+                endTime = meetings[i][1];
+            }
+        }
+        ans += (days-endTime);
         return ans;
     }
 };
