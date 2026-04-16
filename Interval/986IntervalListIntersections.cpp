@@ -15,6 +15,13 @@ public:
             }
             if(i!=firstList.size()-1 && firstList[i+1][0]<=secondList[j][1]) i++;
             else j++;
+
+            // OR
+
+            /*
+            if(firstList[i][1]<=secondList[j][1]) i++;
+            else j++;
+            */
         }
         return ans;
     }
